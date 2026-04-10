@@ -5,6 +5,7 @@ add_executable(hpc_tests
     test_ttas_spinlock.cpp
     test_mpmc_ring_buffer.cpp
     test_huge_pages.cpp
+    test_vector.cpp
 )
 
 # NUMA tests require libnuma-backed implementation.

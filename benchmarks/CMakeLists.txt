@@ -3,6 +3,7 @@ add_executable(hpc_benchmarks
     bench_allocator.cpp
     bench_spinlock.cpp
     bench_mpmc_ring_buffer.cpp
+    bench_vector.cpp
 )
 
 # NUMA-specific benchmarks only make sense when NUMA support is enabled.
