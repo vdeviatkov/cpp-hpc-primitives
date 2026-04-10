@@ -19,11 +19,18 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Dependencies.cmake)
 add_library(hpc_core
     src/arena_allocator.cpp
     src/pool_allocator.cpp
-    src/ipc/shm_ring_buffer.cpp
     src/support/clock.cpp
     src/support/cpu_topology.cpp
     src/huge_pages.cpp
 )
+
+# POSIX shared-memory IPC is not available on Windows.
+if(NOT WIN32)
+    target_sources(hpc_core PRIVATE src/ipc/shm_ring_buffer.cpp)
+    if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        target_link_libraries(hpc_core PRIVATE rt)
+    endif()
+endif()
 
 # Optional NUMA support (Linux libnuma).
 if(HPC_ENABLE_NUMA)
@@ -66,7 +73,7 @@ if(HPC_ENABLE_BENCHMARKS)
     add_subdirectory(benchmarks)
 endif()
 
-if(HPC_ENABLE_EXAMPLES)
+if(HPC_ENABLE_EXAMPLES AND NOT WIN32)
     add_executable(hpc_shm_publisher examples/shm_publisher.cpp)
     target_link_libraries(hpc_shm_publisher PRIVATE hpc_core)
 endif()

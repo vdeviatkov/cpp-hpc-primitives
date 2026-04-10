@@ -2,7 +2,7 @@
 
 #include <atomic>
 #include <thread>
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(_M_X64)
 #include <immintrin.h>
 #endif
 
@@ -55,7 +55,7 @@ private:
     static void pause(std::size_t iterations) noexcept
     {
         for (std::size_t i = 0; i < iterations; ++i) {
-        #ifdef __x86_64__
+        #if defined(__x86_64__) || defined(_M_X64)
             _mm_pause();
         #else
             std::this_thread::yield();
