@@ -265,7 +265,7 @@ private:
     // cache_line_size so the storage doesn't straddle cache lines shared
     // with other hot data.
 
-    alignas(storage_align) std::byte storage_[sizeof(T) * Capacity]{};
+    alignas(storage_align) std::byte storage_[sizeof(T) * Capacity];
     size_type size_ = 0;
 
     // -- Helpers ----------------------------------------------------------
@@ -294,4 +294,5 @@ private:
 };
 
 } // namespace hpc::core
+
 
