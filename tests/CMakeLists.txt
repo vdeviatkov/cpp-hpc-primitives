@@ -7,6 +7,7 @@ add_executable(hpc_tests
     test_huge_pages.cpp
     test_vector.cpp
     test_stack.cpp
+    test_queue.cpp
 )
 
 # NUMA tests require libnuma-backed implementation.
