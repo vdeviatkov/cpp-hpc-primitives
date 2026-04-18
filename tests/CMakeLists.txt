@@ -8,6 +8,7 @@ add_executable(hpc_tests
     test_vector.cpp
     test_stack.cpp
     test_queue.cpp
+    test_dynamic_queue.cpp
 )
 
 # NUMA tests require libnuma-backed implementation.
