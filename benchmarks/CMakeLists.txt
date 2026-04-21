@@ -7,6 +7,7 @@ add_executable(hpc_benchmarks
     bench_stack.cpp
     bench_fixed_queue.cpp
     bench_dynamic_queue.cpp
+    bench_deque.cpp
 )
 
 # NUMA-specific benchmarks only make sense when NUMA support is enabled.
